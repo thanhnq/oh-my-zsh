@@ -3,9 +3,13 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~ %{$reset_color%}'
 local git_branch='$(git_prompt_info)'
 
+if [[ -z $ZSH_THEME_CLOUD_PREFIX ]]; then
+    ZSH_THEME_CLOUD_PREFIX='☁'
+fi
+
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="╭─ ${current_dir}${git_branch}
+PROMPT="╭─ %{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX ${current_dir}${git_branch}
 ╰─ "
 #RPROMPT="%B${return_code}%b"
 RPROMPT='$(vi_mode_prompt_info)%B${return_code}%b%{$(echotc UP 1)%}[%*]%{$(echotc DO 1)%}'
